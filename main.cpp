@@ -1,7 +1,7 @@
 #include <Novice.h>
 
-#include "MyMath.h"
 #include "Matrix4x4.h"
+#include "MyMath.h"
 #include "Vector3.h"
 
 const char kWindowTitle[] = "学籍番号";
@@ -10,18 +10,18 @@ static const int kColumWidth = 60;
 static const int kRowHeight = 20;
 
 void VectorScreenPrintf(int x, int y, const Vector3& vector, const char* label) {
-	Novice::ScreenPrintf(x, y, "%.02f", vector.x);
-	Novice::ScreenPrintf(x + kColumWidth, y, "%.02f", vector.y);
-	Novice::ScreenPrintf(x + kColumWidth * 2, y, "%.02f", vector.z);
+	Novice::ScreenPrintf(x, y, "%.03f", vector.x);
+	Novice::ScreenPrintf(x + kColumWidth, y, "%.03f", vector.y);
+	Novice::ScreenPrintf(x + kColumWidth * 2, y, "%.03f", vector.z);
 	Novice::ScreenPrintf(x + kColumWidth * 3, y, "%s", label);
 }
 
 void MatrixScreenPrintf(int x, int y, const Matrix4x4& matrix, const char* label) {
 	for (int i = 0; i < 4; i++) {
-		Novice::ScreenPrintf(x , y + kRowHeight * i, "%.02f", matrix.m[i][0]);
-		Novice::ScreenPrintf(x + kColumWidth, y + kRowHeight * i, "%.02f", matrix.m[i][1]);
-		Novice::ScreenPrintf(x + kColumWidth * 2, y + kRowHeight * i, "%.02f", matrix.m[i][2]);
-		Novice::ScreenPrintf(x + kColumWidth * 3, y + kRowHeight * i, "%.02f", matrix.m[i][3]);
+		Novice::ScreenPrintf(x, y + kRowHeight * i, "%.03f", matrix.m[i][0]);
+		Novice::ScreenPrintf(x + kColumWidth, y + kRowHeight * i, "%.03f", matrix.m[i][1]);
+		Novice::ScreenPrintf(x + kColumWidth * 2, y + kRowHeight * i, "%.03f", matrix.m[i][2]);
+		Novice::ScreenPrintf(x + kColumWidth * 3, y + kRowHeight * i, "%.03f", matrix.m[i][3]);
 		Novice::ScreenPrintf(x + kColumWidth * 4, y + kRowHeight * i, "%s", label);
 	}
 }
@@ -47,10 +47,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓更新処理ここから
 		///
-		Vector3 axis = Normalize({1.0f,1.0f,1.0f});
-		float angle = 0.44f;
-		Matrix4x4 rotateMatrix = MakeRotateAxisAngle(axis,angle);
+		Vector3 from0 = Normalize(Vector3(1.0f, 0.7f, 0.5f));
+		Vector3 to0 = -from0;
 
+		Vector3 from1 = Normalize(Vector3(-0.6f, 0.9f, 0.2f));
+		Vector3 to1 = Normalize(Vector3(0.4f, 0.7f, -0.5f));
+
+		Matrix4x4 rotateMatrix0 = DirectionToDirection(
+		    Normalize(Vector3(1.0f, 0.0f, 0.0f)), Normalize(Vector3(-1.0f, 0.0f, 0.0f)));
+		Matrix4x4 rotateMatrix1 = DirectionToDirection(from0, to0);
+		Matrix4x4 rotateMatrix2 = DirectionToDirection(from1, to1);
 		///
 		/// ↑更新処理ここまで
 		///
@@ -58,13 +64,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓描画処理ここから
 		///
-		MatrixScreenPrintf(0, 0, rotateMatrix, "rotateMatrix");
-		/*VectorScreenPrintf(0, 0, resultAdd, "	: Add");
-		VectorScreenPrintf(0, kRowHeight, resultSub, "	: Subtract");
-		VectorScreenPrintf(0, kRowHeight * 2, resultMul, "	: Multiply");
-		Novice::ScreenPrintf(0, kRowHeight * 3, "%.02f	:	Dot", resultDot);
-		Novice::ScreenPrintf(0, kRowHeight * 4, "%.02f	:	Length", resultLength);
-		VectorScreenPrintf(0, kRowHeight * 5, resultNormalize, "	: Normalize");*/
+		MatrixScreenPrintf(0, 0, rotateMatrix0, "rotateMatrix0");
+		MatrixScreenPrintf(0, kRowHeight * 5, rotateMatrix1, "rotateMatrix1");
+		MatrixScreenPrintf(0, kRowHeight * 10, rotateMatrix2, "rotateMatrix2");
 		///
 		/// ↑描画処理ここまで
 		///
