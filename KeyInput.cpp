@@ -1,8 +1,24 @@
 #include "KeyInput.h"
+#include <Novice.h>
 
-#include "Input.h"
+void KeyInput::Input() {
+	memcpy(preKeys, keys, 256);
+	Novice::GetHitKeyStateAll(keys);
 
-bool KeyInput::PushKey(BYTE keyNumber) { return Input::GetInstance()->PushKey(keyNumber); }
 
-bool KeyInput::TriggerKey(BYTE keyNumber) { return Input::GetInstance()->TriggerKey(keyNumber); }
+}
 
+bool KeyInput::IsPressed(char keycode) {
+	return keys[keycode] != 0;
+}
+
+bool KeyInput::IsTrigger(char keycode) {
+	return preKeys[keycode] == 0 && keys[keycode] != 0;
+}
+
+bool KeyInput::IsRelease(char keycode) {
+	return preKeys[keycode] != 0 && keys[keycode] == 0;
+}
+
+char KeyInput::keys[256] = { 0 };
+char KeyInput::preKeys[256] = { 0 };

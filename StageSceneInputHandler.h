@@ -1,6 +1,6 @@
 #pragma once
 
-class ISceneCommand;
+class IStageCommand;
 class Selector;
 class Unit;
 class StageSceneInputHandler {
@@ -8,8 +8,12 @@ public:
 	StageSceneInputHandler();
 	void UpdateKeyState();
 
-	ISceneCommand* SelectorHandleInput(Selector* selector);
-	ISceneCommand* UnitHandleInput(Unit* unit);
+	IStageCommand* SelectorHandleInput(Selector* selector);
+	IStageCommand* UnitHandleInput(Unit* unit);
 
 	bool CheckUndoStatus();
+
+private:
+	Selector* selector_;
+	Unit* selectUnit_;
 };

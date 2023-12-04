@@ -1,8 +1,11 @@
 #pragma once
-#include "IState.h"
 
-#include "Enemy.h"
-#include "Player.h"
+#include <memory>
+
+#include "IState.h"
+#include "StageSceneInputHandler.h"
+#include "Selector.h"
+
 class StageScene : public IState {
 public:
 	void Initialize() override;
@@ -10,6 +13,7 @@ public:
 	void Draw() override;
 
 private:
-	Enemy enemy_;
-	Player player_;
+	std::unique_ptr<StageSceneInputHandler> inputHandler_;
+	std::unique_ptr<Selector> selector_;
+
 };

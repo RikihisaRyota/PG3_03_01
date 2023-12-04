@@ -7,7 +7,7 @@
 void ClearScene::Initialize() {}
 
 void ClearScene::Update() {
-	if (KeyInput::TriggerKey(DIK_SPACE)) {
+	if (KeyInput::IsTrigger(DIK_SPACE)) {
 		sceneNo_ = Scene::kTitle;
 	}
 }

@@ -116,13 +116,19 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\TextureManager.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\2d\ImGuiManager.cpp" />
     <ClCompile Include="C:\KamataEngine\Adapter\Novice.cpp" />
+    <ClCompile Include="ClearScene.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="ISceneCommand.cpp" />
+    <ClCompile Include="IState.cpp" />
+    <ClCompile Include="KeyInput.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyMath.cpp" />
     <ClCompile Include="Selector.cpp" />
     <ClCompile Include="SelectorCommand.cpp" />
+    <ClCompile Include="StageScene.cpp" />
     <ClCompile Include="StageSceneInputHandler.cpp" />
-    <ClCompile Include="Uint.cpp" />
+    <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="Unit.cpp" />
     <ClCompile Include="UnitCommand.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,12 +159,18 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="C:\KamataEngine\DirectXGame\input\Input.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\scene\GameScene.h" />
     <ClInclude Include="C:\KamataEngine\Adapter\Novice.h" />
+    <ClInclude Include="ClearScene.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="ISceneCommand.h" />
+    <ClInclude Include="IState.h" />
+    <ClInclude Include="KeyInput.h" />
     <ClInclude Include="MyMath.h" />
     <ClInclude Include="Selector.h" />
     <ClInclude Include="SelectorCommand.h" />
+    <ClInclude Include="StageScene.h" />
     <ClInclude Include="StageSceneInputHandler.h" />
-    <ClInclude Include="Uint.h" />
+    <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="Unit.h" />
     <ClInclude Include="UnitCommand.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

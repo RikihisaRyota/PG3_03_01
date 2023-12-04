@@ -6,7 +6,7 @@ void TitleScene::Initialize() {
 }
 
 void TitleScene::Update() {
-	if (KeyInput::TriggerKey(DIK_SPACE)) {
+	if (KeyInput::IsTrigger(DIK_SPACE)) {
 		sceneNo_ = Scene::kStage;
 	}
 }

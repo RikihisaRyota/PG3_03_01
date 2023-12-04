@@ -3,11 +3,11 @@
 #include <cstdint>
 
 class Selector;
-class Uint {
+class Unit {
 public:
-	Uint() = default;
+	Unit() = default;
 
-	void Initialize();
+	void Initialize(int32_t id);
 	void Update();
 	void Draw();
 

@@ -1,9 +1,17 @@
 #include "SelectorCommand.h"
 
-SelectMoveCommand::SelectMoveCommand(Selector* selector, int32_t x, int32_t y) {}
+#include "Selector.h"
 
-void SelectMoveCommand::Exec() {}
+SelectMoveCommand::SelectMoveCommand(Selector* selector, int32_t x, int32_t y) { 
+	selector->Move(x,y);
+}
 
-SelectUnitCommand::SelectUnitCommand(Selector* selector) {}
+void SelectMoveCommand::Exec() {
+
+}
+
+SelectUnitCommand::SelectUnitCommand(Selector* selector) { 
+	selector->SelectUnit(); 
+}
 
 void SelectUnitCommand::Exec() {}

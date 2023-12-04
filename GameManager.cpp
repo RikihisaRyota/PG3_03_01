@@ -12,7 +12,7 @@ GameManager::GameManager() {
 	sceneArr_[static_cast<size_t>(Scene::kClear)] = std::make_unique<ClearScene>();
 	sceneArr_[static_cast<size_t>(Scene::kClear)]->Initialize();
 
-	currentSceneID_ = static_cast<uint32_t>(Scene::kTitle);
+	currentSceneID_ = static_cast<uint32_t>(Scene::kStage);
 }
 
 GameManager::~GameManager() {}
@@ -33,7 +33,7 @@ int GameManager::Run() {
 		sceneArr_[(static_cast<size_t>(currentSceneID_))]->Draw();
 		
 		Novice::EndFrame();
-		if (KeyInput::TriggerKey(DIK_ESCAPE)) {
+		if (KeyInput::IsTrigger(DIK_ESCAPE)) {
 			break;
 		}
 	}

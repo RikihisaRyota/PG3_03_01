@@ -1,7 +1,20 @@
 #pragma once
-#include <Novice.h>
+
 class KeyInput {
+
+private:
+
+	static char keys[256];
+	static char preKeys[256];
+
 public:
-	static bool PushKey(BYTE keyNumber);
-	static bool TriggerKey(BYTE keyNumber);
+
+	static void Input();
+
+	static bool IsTrigger(char keycode);
+
+	static bool IsRelease(char keycode);
+
+	static bool IsPressed(char keycode);
 };
+

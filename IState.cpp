@@ -1,5 +1,5 @@
 #include "IState.h"
 
-Scene IState::sceneNo_ = Scene::kTitle;
+Scene IState::sceneNo_ = Scene::kStage;
 
 IState::~IState() {}
