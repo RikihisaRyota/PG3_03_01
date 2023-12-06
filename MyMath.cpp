@@ -89,3 +89,63 @@ float Dot(const Vector3& a, const Vector3& b) { return a.x * b.x + a.y * b.y + a
 Vector3 Cross(const Vector3& a, const Vector3& b) {
 	return {a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x};
 }
+
+Quaternion IdentityQuaternion() { return Quaternion(0.0f, 0.0f, 0.0f, 1.0f); }
+
+Quaternion Conjugation(const Quaternion& quaternion) {
+	return Quaternion(-quaternion.x, -quaternion.y, -quaternion.z, quaternion.w);
+}
+
+Quaternion Normalize(const Quaternion& quaternion) {
+	float length = std::sqrt(
+	    quaternion.x * quaternion.x + quaternion.y * quaternion.y + quaternion.z * quaternion.z +
+	    quaternion.w * quaternion.w);
+
+	if (length != 0.0f) {
+		float inversLength = 1.0f / length;
+		return Quaternion(
+		    quaternion.x * inversLength, quaternion.y * inversLength, quaternion.z * inversLength,
+		    quaternion.w * inversLength);
+	} else {
+		return quaternion;
+	}
+}
+
+Quaternion Inverse(const Quaternion& quaternion) {
+	float length = Norm(quaternion);
+	length *= length;
+	Quaternion conjugate = Conjugation(quaternion);
+	Quaternion result{};
+	result.x = conjugate.x / length;
+	result.y = conjugate.y / length;
+	result.z = conjugate.z / length;
+	result.w = conjugate.w / length;
+	return result;
+}
+
+Quaternion Add(const Quaternion& p1, const Quaternion& p2) {
+	return Quaternion(p1.x + p2.x, p1.y + p2.y, p1.z + p2.z, p1.w + p2.w);
+}
+
+Quaternion Multiply(const Quaternion& p1, const Quaternion& p2) {
+	Quaternion result;
+	Vector3 qv = {p1.x, p1.y, p1.z};
+	Vector3 rv = {p2.x, p2.y, p2.z};
+
+	result.w = p1.w * p2.w - Dot(qv, rv);
+	Vector3 t = Cross(qv, rv) + (qv * p2.w) + (rv * p1.w);
+	result.x = t.x;
+	result.y = t.y;
+	result.z = t.z;
+	return result;
+}
+
+Quaternion Multiply(const Quaternion& p1, float scalar) {
+	return Quaternion(p1.x * scalar, p1.y * scalar, p1.z * scalar, p1.w * scalar);
+}
+
+float Norm(const Quaternion& quaternion) {
+	return std::sqrt(
+	    quaternion.x * quaternion.x + quaternion.y * quaternion.y + quaternion.z * quaternion.z +
+	    quaternion.w * quaternion.w);
+}

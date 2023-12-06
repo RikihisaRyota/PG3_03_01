@@ -41,22 +41,12 @@
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\StringUtility.cpp">
       <Filter>KamataEngine\Source</Filter>
     </ClCompile>
-    <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="ClearScene.cpp">
-      <Filter>Scene</Filter>
+    <ClCompile Include="..\DirectXGame\math\Matrix4x4.cpp">
+      <Filter>KamataEngine</Filter>
     </ClCompile>
-    <ClCompile Include="IState.cpp">
-      <Filter>Scene</Filter>
+    <ClCompile Include="MyMath.cpp">
+      <Filter>KamataEngine</Filter>
     </ClCompile>
-    <ClCompile Include="StageScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="TitleScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="KeyInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -129,24 +119,10 @@
     <ClInclude Include="C:\KamataEngine\DirectXGame\base\StringUtility.h">
       <Filter>KamataEngine\Include</Filter>
     </ClInclude>
-    <ClInclude Include="GameManager.h" />
-    <ClInclude Include="ClearScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="IState.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="StageScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="TitleScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="C:\KamataEngine\DirectXGame\2d\ImGuiManager.h">
       <Filter>KamataEngine</Filter>
     </ClInclude>
-    <ClInclude Include="KeyInput.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="MyMath.h" />
+    <ClInclude Include="Quaternion.h" />
   </ItemGroup>
 </Project>
