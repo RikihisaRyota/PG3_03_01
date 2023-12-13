@@ -1,6 +1,6 @@
 #pragma once
-#include "Quaternion.h"
 #include "Matrix4x4.h"
+#include "Quaternion.h"
 #include "Vector3.h"
 
 Vector3 Normalize(const Vector3& v1);
@@ -25,3 +25,9 @@ Quaternion Add(const Quaternion& p1, const Quaternion& p2);
 Quaternion Multiply(const Quaternion& p1, const Quaternion& p2);
 Quaternion Multiply(const Quaternion& p1, float scalar);
 float Norm(const Quaternion& quaternion);
+
+Quaternion MakeRotateAxisAngleQuaternion(const Vector3& axis, float angle);
+
+Vector3 RotateVector(const Vector3& vector, const Quaternion& quaternion);
+
+Matrix4x4 MakeRotateMatrix(const Quaternion& quaternion);

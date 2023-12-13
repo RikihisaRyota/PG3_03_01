@@ -2,8 +2,8 @@
 
 #include "Matrix4x4.h"
 #include "MyMath.h"
-#include "Vector3.h"
 #include "Quaternion.h"
+#include "Vector3.h"
 
 const char kWindowTitle[] = "学籍番号";
 
@@ -56,31 +56,24 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓更新処理ここから
 		///
-		Quaternion q1 = {2.0f, 3.0f, 4.0f, 1.0f};
-		Quaternion q2 = {1.0f, 3.0f, 5.0f, 2.0f};
-		Quaternion identity = IdentityQuaternion();
-		Quaternion conj = Conjugation(q1);
-		Quaternion inv = Inverse(q1);
-		Quaternion normal = Normalize(q1);
-		Quaternion mul1 = Multiply(q1, q2);
-		Quaternion mul2 = Multiply(q2, q1);
-		float norm = Norm(q1);
+		Quaternion rotation =
+		    MakeRotateAxisAngleQuaternion(Normalize(Vector3{1.0f, 0.4f, -0.2f}), 0.45f);
+		Vector3 pointY = {2.1f, -0.9f, 1.3f};
+		Matrix4x4 rotateMatrix = MakeRotateMatrix(rotation);
+		Vector3 rotateByQuaternion = RotateVector(pointY, rotation);
+		Vector3 rotateByMatrix = Transform(pointY, rotateMatrix);
 
 		///
 		/// ↑更新処理ここまで
 		///
 
-
 		///
 		/// ↓描画処理ここから
 		///
-		QuaternionScreenPrintf(0, kRowHeight * 0, identity, "identity");
-		QuaternionScreenPrintf(0, kRowHeight * 1, conj, "Conjugation");
-		QuaternionScreenPrintf(0, kRowHeight * 2, inv, "Inverse");
-		QuaternionScreenPrintf(0, kRowHeight * 3, normal, "Normalize");
-		QuaternionScreenPrintf(0, kRowHeight * 4, mul1, "Multiply1");
-		QuaternionScreenPrintf(0, kRowHeight * 5, mul2, "Multiply2");
-		Novice::ScreenPrintf(0, kRowHeight * 6, "Norm:%.02f", norm);
+		QuaternionScreenPrintf(0, kRowHeight * 0, rotation, "rotation");
+		MatrixScreenPrintf(0, kRowHeight * 1, rotateMatrix, "rotateMatrix");
+		VectorScreenPrintf(0, kRowHeight * 6, rotateByQuaternion, "rotateByQuaternion");
+		VectorScreenPrintf(0, kRowHeight * 7, rotateByMatrix, "rotateByMatrix");
 		///
 		/// ↑描画処理ここまで
 		///
