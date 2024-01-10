@@ -86,6 +86,8 @@ Matrix4x4 DirectionToDirection(const Vector3& from, const Vector3& to) {
 
 float Dot(const Vector3& a, const Vector3& b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
 
+float Dot(const Quaternion& p1, const Quaternion& p2) { return p1.x * p2.x + p1.y * p2.y + p1.z * p2.z + p1.w * p2.w; }
+
 Vector3 Cross(const Vector3& a, const Vector3& b) {
 	return {a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x};
 }
@@ -211,5 +213,25 @@ Matrix4x4 MakeRotateMatrix(const Quaternion& quaternion) {
 	result.m[3][2] = 0.0f;
 	result.m[3][3] = 1.0f;
 
+	return result;
+}
+
+Quaternion Slerp(const Quaternion& q0, const Quaternion& q1, float t) {
+	float cos = Dot(q0, q1);
+	Quaternion from{};
+	if (cos < 0) {
+		from.x = -q0.x;
+		from.y = -q0.y;
+		from.z = -q0.z;
+		from.w = -q0.w;
+		cos *= -1.0f;
+	} else {
+		from = q0;
+	}
+	float theta = std::acos(cos);
+	Quaternion result{};
+	result =
+	    Add(Multiply(from, std::sin((1.0f - t) * theta) / std::sin(theta)),
+	        Multiply(q1, std::sin(t * theta) / std::sin(theta)));
 	return result;
 }
